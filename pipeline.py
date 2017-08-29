@@ -62,12 +62,26 @@ def AskLocations():
         print("> Slurm Module for GATK (version-3.6) Is Loaded")
         g_mod="module load gatk"
         GATK ="$GATK"
+    print("> Load SAMTOOLS module in SLURM: (y/n)")
+    sam = input()
+    if sam != "y":
+        print("ENTER SAMTOOLS LOCATION (version-1.2 or higher)")
+        sam_mod = "\t"
+        SAM = input()
+    else: 
+        print("> Slurm Module for SAMTOOLS (VERSION-1.2 or 1.5)")
+        print("> ENTER version")
+        vers = input()
+        sam_mod = "module load samtools/%s"%vers
+        SAM = "samtools"
+    print(">ENTER LOCATION OF VARSCAN")
+    VARSCAN = input()
     print(">ENTER LOCATION OF INITIAL FASTQ FILES ")
     FASTQ = input()
-    return PROJECT, REF_GENOME, vcf, JAVA, b_mod, BWA, g_mod, GATK, PICARD, FASTQ
+    return PROJECT, REF_GENOME, vcf, JAVA, b_mod, BWA, g_mod, GATK, PICARD, sam_mod, SAM, VARSCAN, FASTQ
 
 #PROJECT, REF_GENOME, vcf, JAVA, b_mod, BWA, g_mod, GATK, PICARD, FASTQ = AskLocations()
-
+''' NEED TO ADD THESE GLOBAL VARIABLES IN EACH CHUNK 01'''
 ''' CHUNK 01 ALIGNMNET '''
 #c+=1 # for process 1
 PROC="Alignment"
