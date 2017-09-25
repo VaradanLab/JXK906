@@ -14,7 +14,7 @@ import re
 import datetime as dt
 from os.path import join, getsize
 import FUNCTIONS_FOR_PIPELINE as fp
-import pipeline as pl
+import NGSDATA_Processing_Pipeline as pl
 
 
 print("RUN PROCESSES(a/s/n):")
