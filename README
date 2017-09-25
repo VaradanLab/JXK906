@@ -1,0 +1,46 @@
+EXECUTION OF NEXT GENERATION SEQUENCING DATA PROCESSING PIPELINE 
+
+* Python executables required for processing, download all files in one folder :
+
+1. RUN_NGS_PROCESSING.py
+2. NGSDATA_Processing_Pipeline.py
+3. FUNCTIONS_FOR_PIPELINE.py
+
+I. RUN_NGS_PROCESSING.py
+- Main file to be executed along with python/3.5.2
+- On execution it asks for location of dependencies including
+  * folder containing downloaded executables
+  * PROJECT 
+  * Reference Genome (hg19/Grch37)
+  * Dbsnp vcf file 
+  * Java (version-1.8.x) executable (eg: /mnt/xyz/jdk_1.8.x/bin/java)
+  * Picard.jar file (version-2.x.x)
+  ** BWA (version-0.7.x)
+  ** GATK.jar (version-3.6 or higher)
+  * FASTQ Files 
+  * USER MAIL for building slurm scripts (eg: xyz99@case.edu)
+  * Account assigned with cores (eg: vxw89)
+
+NOTE: For dependencies (**), versions are available as a slurm modules as well, so if want to load slurm module for bwa and gatk provide 'y' as an input while giving locations. 
+ 
+I.a DESCRIPTION
+-This file executes all or required Data processing steps including Alignment, Sorting, Adding and Replacing Read groups, Marking Duplicates, Base recalibration and Indel realignment.
+- An Assumptive pipeline, runs the whole data processing pipeline(A) or few processes as required by user(S).
+- Creates folders respective to the current process and within that folder creates another folder having all slurm scripts.
+- For building slurm scripts the default requirements are:
+    PROCESS     NODES   CPUS-PER-TASK   MEMORY  TIME(hrs:mins:sec)
+    Alignment     1            1          8gb   15:00:00
+    SamSort       1            1          8gb   15:00:00
+    AddReplaceGrp 1            1          8gb   15:00:00
+    MarkDups      1            1          8gb   15:00:00
+    BaseRecalib   1        8>=nct>=2     16gb   30:00:00 **
+    IndelRealign  1            1          8gb   15:00:00
+** (-nct) option is a parallelization step which assigns more cpus to a single task without requiring x-times memory and expedite base recalibration. 
+- Above requirements can always be changed depending upon the process.
+- Requires java heap memory (Xmx8g, only provide integer value exclude gb) eg. 8, preferably equal to slurm memory.
+- Shows an error as soon as encountered. Once error is showed it waits for user response whether to exit system or continue with this particular error.
+- Once system is exited, all slurm jobs running will cancel automatically.
+- On successfull completion of any process, output is a log file including the size of initial file, size of current file, arguments used to run a particular sample and feew lines showing the execution time of every sample assuring its compeletion. 
+- This log file is generated in slurm script folder or each process seperatly.
+- In the end at the project location gives two csv files 1. Total reads per sample per process 2. Total Mapped reads per sample per process.
+
