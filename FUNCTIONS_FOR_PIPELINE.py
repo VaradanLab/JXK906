@@ -362,8 +362,8 @@ def samtools(outdir, process):
             M_reads.append([f,mapped_reads])
             
     #print(T_reads)       
-    df_total_reads = pd.DataFrame.from_records(T_reads, columns=["sample", "total_reads_%s"%process])
-    df_mapped_reads = pd.DataFrame.from_records(M_reads, columns=["sample", "total_reads_%s"%process])
+    df_total_reads = pd.DataFrame.from_records(T_reads, columns=["sample", "Total_reads_%s"%process])
+    df_mapped_reads = pd.DataFrame.from_records(M_reads, columns=["sample", "Mapped_reads_%s"%process])
     return [df_total_reads , df_mapped_reads]
 
     #df_reads.to_csv("/".join([script_dir,"samtools_idxstats1.csv"]), index=False)
