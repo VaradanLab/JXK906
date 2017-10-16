@@ -119,8 +119,8 @@ if ans == "a":
         for i in range(2,len(keys)):
                 df_total_merged = pd.merge(df_total_merged, df_dict[keys[i]][0], how="inner", on= "sample")
                 df_mapped_merged = pd.merge(df_mapped_merged, df_dict[keys[i]][1], how="inner", on= "sample")
-    df_total_merged.write_csv("/".join([PROJECT, "TOTAL_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
-    df_mapped_merged.write_csv("/".join([PROJECT, "MAPPED_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
+    df_total_merged.to_csv("/".join([PROJECT, "TOTAL_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
+    df_mapped_merged.to_csv("/".join([PROJECT, "MAPPED_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
   
 elif ans == "s":
     PROJECT, REF_GENOME, vcf, JAVA, b_mod, BWA, g_mod, GATK, PICARD, FASTQ, MAIL, ACCOUNT = pl.AskLocations()
@@ -236,8 +236,8 @@ elif ans == "s":
         c= keys[0:l]
         df_total_merged = df_dict[c[0]][0]
         df_mapped_merged = df_dict[c[0]][1]
-    df_total_merged.write_csv("/".join([PROJECT, "TOTAL_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
-    df_mapped_merged.write_csv("/".join([PROJECT, "MAPPED_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
+    df_total_merged.to_csv("/".join([PROJECT, "TOTAL_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
+    df_mapped_merged.to_csv("/".join([PROJECT, "MAPPED_READS_PER_SAMPLE_PER_PROCESS.csv"]), index = False)
 
 else:
     print("Proceeding with HSMetrics")
