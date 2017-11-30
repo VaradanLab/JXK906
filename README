@@ -25,7 +25,8 @@ NOTE: For dependencies (**), versions are available as a slurm modules as well, 
  
 I.a DESCRIPTION
 -This file executes all or required Data processing steps including Alignment, Sorting, Adding and Replacing Read groups, Marking Duplicates, Base recalibration and Indel realignment.
-- An Assumptive pipeline, runs the whole data processing pipeline(A) or few processes as required by user(S).
+- An Assumptive pipeline, runs the whole data processing pipeline(ALL='a') or few processes as required by user(SOME='s').
+- If option None='n' is selected it will provide HSMetrics for all samples.
 - Creates folders respective to the current process and within that folder creates another folder having all slurm scripts.
 - For building slurm scripts the default requirements are:
     PROCESS     NODES   CPUS-PER-TASK   MEMORY  TIME(hrs:mins:sec)
@@ -40,7 +41,7 @@ I.a DESCRIPTION
 - Requires java heap memory (Xmx8g, only provide integer value exclude gb) eg. 8, preferably equal to slurm memory.
 - Shows an error as soon as encountered. Once error is showed it waits for user response whether to exit system or continue with this particular error.
 - Once system is exited, all slurm jobs running will cancel automatically.
-- On successfull completion of any process, output is a log file including the size of initial file, size of current file, arguments used to run a particular sample and feew lines showing the execution time of every sample assuring its compeletion. 
+- On successfull completion of any process, output is a log file including the size of initial file, size of current file, arguments used to run a particular sample and few lines showing the execution time of every sample assuring its compeletion. 
 - This log file is generated in slurm script folder or each process seperatly.
 - In the end at the project location gives two csv files 1. Total reads per sample per process 2. Total Mapped reads per sample per process.
 
