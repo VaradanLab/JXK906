@@ -37,5 +37,5 @@ MAIL = "jxk906@case.edu"
 ACCOUNT = "lxh259"
 
 pairs = cp.get_pairs_from_file()
-output_dir_mpileup = cp.mpileup(PROJECT,INIT,pairs)
+output_dir_mpileup = cp.mpileup(PROJECT,INIT,pairs[0])
 cp.somatic(PROJECT,output_dir_mpileup)
